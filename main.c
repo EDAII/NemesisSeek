@@ -15,31 +15,38 @@ Registro registros[10] = {
     {10,"Algoritmo10"}
 };
 
-int main(){
-    Node *tabela[TAM_HASH] = {NULL}; //inicializa hash
+int main() {
+    Node *tabela[TAM_HASH] = {NULL}; // inicializa hash
 
-    //Preenche a tabela hash
+    // Preenche a tabela hash
     for(int i=0;i<10;i++){
         inserirHash(tabela, registros[i]);
     }
 
-    //busca binaria
+    // exemplo de 10 ids num vetor
     int ids[10];
     for(int i=0;i<10;i++) ids[i] = registros[i].id;
 
-    int idBusca = 7;
+    int idBusca;
+    printf("Digite o ID para buscar: ");
+    scanf("%d", &idBusca);
+
     int pos = BuscaBinaria(ids, idBusca, 0, 9);
     if(pos != -1){
         printf("Encontrado por ID: %s (ID=%d)\n", registros[pos].nome, registros[pos].id);
     } else {
         printf("ID nao encontrado\n");
     }
-    char nomeBusca[] = "Algoritmo4";
+    char nomeBusca[20];
+    printf("Digite o nome para buscar: ");
+    scanf("%19s", nomeBusca);
+
     Registro *res = buscarHash(tabela, nomeBusca);
     if(res != NULL){
         printf("Encontrado por Nome: %s (ID=%d)\n", res->nome, res->id);
     } else {
         printf("Nome nao encontrado\n");
     }
+
     return 0;
 }

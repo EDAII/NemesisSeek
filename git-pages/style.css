@@ -1,0 +1,170 @@
+:root {
+    --primary: #800020;
+    --secondary: #2C0010;
+    --accent: #FFD700;
+    --dark: #1A0000;
+    --light: #FFF8DC;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--dark);
+    color: var(--light);
+    font-family: 'MedievalSharp', cursive;
+    min-height: 100vh;
+    position: relative;
+}
+
+.castle-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://images.unsplash.com/photo-1601662528567-526cd06f6582?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.castle-header {
+    background: linear-gradient(to bottom, var(--secondary), transparent);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    border-bottom: 2px solid var(--accent);
+}
+
+.castle-header h1 {
+    font-size: 4rem;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(255,215,0,0.5),
+                 2px 2px 4px rgba(0,0,0,0.8);
+    letter-spacing: 4px;
+}
+
+.torch {
+    width: 60px;
+    height: 90px;
+    position: absolute;
+    top: 20px;
+    background: radial-gradient(circle at 50% 0%, #ff6b0f, transparent 70%);
+    animation: flicker 3s infinite alternate;
+}
+
+.torch.left { left: 20%; }
+.torch.right { right: 20%; }
+
+.algoritmos {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.algoritmo-card {
+    background: rgba(128, 0, 32, 0.8);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    margin: 2rem 0;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 20px rgba(128, 0, 32, 0.3);
+}
+
+.algoritmo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.contribuintes {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem;
+}
+
+.contribuintes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contribuinte-card {
+    background: rgba(128, 0, 32, 0.8);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.contribuinte-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    border: 2px solid var(--accent);
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+h2 {
+    color: var(--accent);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.complexidade {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--dark);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(to top, var(--secondary), transparent);
+    border-top: 2px solid var(--accent);
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 6px;
+}

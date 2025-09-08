@@ -29,40 +29,39 @@ Porta criar_porta() {
     p.tamanho = rand() % tam_combinacao + 3; // tamanho entre 3 e 10
     p.ordenada = rand() % 2; //0 ou 1
 
-    if (ordenada) {
+    if (p.ordenada) { 
         // gera em ordem crescente direto
         int inicio = rand() % tam_combinacao;  
         int atual = inicio;
-    for (int i = 0; i < p.tamanho; i++) {
-        p.combinacao[i] = atual;
-        atual += rand() % 2679;
-    }
-
+        for (int i = 0; i < p.tamanho; i++) {
+            p.combinacao[i] = atual;
+            atual += rand() % 2679;
+        }
     } else {
         // gera bagunçado
         for (int i = 0; i < p.tamanho; i++) {
             p.combinacao[i] = rand() % 50 + 1;
         }
     }
-    p.chave = p.combinacao[(rand()%p.tamanho)]
+    p.chave = p.combinacao[(rand()%p.tamanho)]; 
     return p;
 }
 
 void Menu(){
-    
     int escolha;
     scanf("%d", &escolha);
     if (escolha==1){
         printf("Escolha uma porta: ");
-        for (int i = 0; i)
+        for (int i = 0; i < 10; i++) { 
+            printf("%d ", i+1);
+        }
     }
     else if (escolha==2){
-
+        //ainda vai adicionar...
     }
     else if (escolha==3){
-
+        //ainda vai adicionar...
     }
-
     else{
         printf("Opção inválida, escolha uma opção válida");
         Menu();
@@ -72,26 +71,28 @@ void Menu(){
 void jogo() {
     int distancia_monstro = 2000;
     int total_fases = 3;
-    int quantidade_portas = 10
-    int rodadas_
+    int quantidade_portas = 10; 
+    int rodadas = 0;
 
     for(int fase = 1; fase <= total_fases; fase++) {
         printf("Você chegou na fase %d", fase);
 
         // Criar portas da fase
         Porta portas[quantidade_portas];
-        for(int i = 0; i < quantidade; i++){
+        for(int i = 0; i < quantidade_portas; i++){ 
             portas[i] = criar_porta();
         }
 
         int portaAberta = 0;
-        while(!portaAberta && distancia_monstro > 0) {
+        int escolha = 0;
 
+        while(!portaAberta && distancia_monstro > 0) {
             if(distancia_monstro <= 0) {
                 printf("O monstro te alcançou! Game Over.\n");
-            break;
-            printf("O monstro está a %d passos\n", distancia_monstro)
-        }
+                break;
+            }
+            printf("O monstro está a %d passos\n", distancia_monstro); 
+
             // Mostrar portas e opções de ação
             printf("Escolha uma opção: ");
             Menu();
@@ -100,13 +101,12 @@ void jogo() {
             distancia_monstro -= 50; // exemplo
 
             // Checar se o jogador encontrou a chave
-            if(/* jogador encontrou a chave */) {
+            if(escolha >= 0 && escolha < quantidade_portas) { 
                 printf("Porta %d aberta!\n", escolha);
                 portaAberta = 1;
                 distancia_monstro += 100; // bônus
             }
         }
-
     }
 
     if(distancia_monstro > 0) {

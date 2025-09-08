@@ -1,9 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "busca_binaria.h"
+#include "algoritmos_busca.h"
 
 int BuscaBinaria(int *array, int busca, int inicio, int fim){
-    
     if (fim < inicio){
         return -1;
     }
@@ -12,11 +10,7 @@ int BuscaBinaria(int *array, int busca, int inicio, int fim){
         return meio;
     }
     else if(busca < array[meio]){
-        fim = meio - 1;
-        return BuscaBinaria(array, busca, inicio, fim);
+        return BuscaBinaria(array, busca, inicio, meio - 1);
     }
-    inicio = meio + 1;
-    return BuscaBinaria(array, busca, inicio, fim);
-    
+    return BuscaBinaria(array, busca, meio + 1, fim);
 }
-

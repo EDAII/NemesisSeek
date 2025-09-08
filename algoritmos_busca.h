@@ -15,8 +15,8 @@ typedef struct Node {
 } Node;
 
 // Funções
-int BuscaBinaria(int *array, int busca, int inicio, int fim);
-
+int BuscaBinaria(int *array, int busca, int inicio, int fim, int *passos);
+int BuscaSequencial(int *array, int tamanho, int busca, int *passos);
 int hash(char *nome);
 void inserirHash(Node *tabela[], Registro r);
 Registro* buscarHash(Node *tabela[], char *nome);

@@ -1,7 +1,7 @@
 #ifndef ALGORITMOS_BUSCA_H
 #define ALGORITMOS_BUSCA_H
 
-#define TAM_HASH 20   // tamanho da tabela hash
+#define TAM_HASH 1001   // tamanho da tabela hash
 
 typedef struct {
     int id;

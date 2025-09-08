@@ -18,8 +18,9 @@ Os temas de projeto são:
 ## Alunos  
 | Matrícula | Nome |  
 |-----------------------|---------------------|  
-| xx/xxxxxxx | xxxx xxxx xxxxx |  
-| xx/xxxxxxx | xxxx xxxx xxxxx |  
+| 23/1033737 | Artur Mendonça Arruda |  
+| 23/1035464 | Lucas Mendonça Arruda |  
+
 ## Descrição do projeto
 Aqui você deve dizer o objetivo deste projeto e o que realmente foi feito neste repositório.
 ## Guia de instalação

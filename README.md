@@ -62,6 +62,18 @@ A busca binária só pode ser usada em vetores ordenados.
 - Cada comparação também conta como um passo, impactando a distância do monstro.  
 - Comparada à busca sequencial, geralmente requer muito menos passos para encontrar a chave, mas só funciona em portas ordenadas.
 
+### Função Hash
+
+![Função Hash](assets/algoritmos/hash.png)
+
+A função hash utilizada combina o algoritmo **djb2**, criado por Daniel J. Bernstein, com uma transformação baseada na **razão áurea (φ)**.  
+
+- O algoritmo começa com um valor inicial de **5381**, escolhido empiricamente por Bernstein por gerar boa dispersão e poucas colisões.  
+- Para cada caractere da string, a hash acumulada é multiplicada por 33 e somada ao valor ASCII do caractere.  
+- Em seguida, o valor é multiplicado por uma constante derivada da razão áurea (**0.6180339887**). Essa etapa “embaralha” os números e ajuda a distribuir melhor as chaves.  
+- A parte inteira do resultado é descartada, mantendo apenas a parte fracionária.  
+- Por fim, o valor é escalonado para caber no tamanho da tabela (`TAM_HASH`).  
+
 
 ## Conclusões
 

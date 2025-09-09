@@ -168,3 +168,35 @@ footer {
     background: var(--accent);
     border-radius: 6px;
 }
+
+.readme {
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: rgba(44, 0, 16, 0.8);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(128, 0, 32, 0.3);
+}
+
+.readme h2, .readme h3, .readme h4 {
+    color: var(--accent);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 1rem;
+}
+
+.readme p, .readme li, .readme code {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.readme ul, .readme ol {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.readme code {
+    background: rgba(255, 215, 0, 0.2);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+}

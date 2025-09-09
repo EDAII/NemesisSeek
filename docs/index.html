@@ -46,6 +46,47 @@
             </div>
         </section>
 
+    <section class="readme">
+    <h2>Sobre o Projeto</h2>
+    <div class="readme-content">
+        <p>
+            O <strong>NemesisSeek</strong> é um jogo em C onde o jogador deve abrir portas para avançar 
+            por diferentes fases, enquanto um monstro se aproxima. 
+            Cada porta exige uma chave, obtida por meio de algoritmos de busca ou dicas. 
+            Algumas portas são especiais e permitem progredir de fase.
+        </p>
+    </div>
+
+    <h3>Dependências</h3>
+    <ul>
+        <li><strong>Sistema:</strong> Linux ou Windows (com GCC instalado)</li>
+        <li><strong>Compilador:</strong> GCC 9.4+ (C99 ou superior)</li>
+        <li><strong>Ferramentas opcionais:</strong> Make</li>
+    </ul>
+
+    <h3>Como Executar</h3>
+    <ol>
+        <li>Clone o repositório: <code>git clone https://github.com/EDAII/NemesisSeek.git</code></li>
+        <li>Entre na pasta: <code>cd NemesisSeek</code></li>
+        <li>Compile: <code>gcc main.c busca_binaria.c busca_sequencial.c hash.c -o programa</code></li>
+        <li>Execute: <code>./programa</code></li>
+    </ol>
+
+    <h3>Aprendizados</h3>
+    <p>
+        O projeto demonstrou as diferenças de desempenho entre algoritmos de busca. 
+        No contexto do jogo, a escolha correta do algoritmo é estratégica, 
+        pois cada comparação aproxima o monstro do jogador.
+    </p>
+
+    <h4>Limitações</h4>
+    <ul>
+        <li>A busca binária só funciona em portas ordenadas.</li>
+        <li>A busca sequencial pode ser lenta em vetores grandes.</li>
+        <li>A geração aleatória das portas afeta o ritmo da partida.</li>
+    </ul>
+</section>
+
         <section class="contribuintes">
             <h2>Desenvolvedores</h2>
             <div class="contribuintes-grid">

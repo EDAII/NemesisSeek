@@ -1,7 +1,7 @@
 #ifndef ALGORITMOS_BUSCA_H
 #define ALGORITMOS_BUSCA_H
 
-#define TAM_HASH 20   // tamanho da tabela hash
+#define TAM_HASH 1001   // tamanho da tabela hash
 
 typedef struct {
     int id;
@@ -15,8 +15,8 @@ typedef struct Node {
 } Node;
 
 // Funções
-int BuscaBinaria(int *array, int busca, int inicio, int fim);
-
+int BuscaBinaria(int *array, int busca, int inicio, int fim, int *passos);
+int BuscaSequencial(int *array, int tamanho, int busca, int *passos);
 int hash(char *nome);
 void inserirHash(Node *tabela[], Registro r);
 Registro* buscarHash(Node *tabela[], char *nome);

@@ -1,72 +1,81 @@
-# Repositório Template
-Repositório de Template para os projetos da disciplina 
-```
-Nome do Repositório (Apague este tópico)
-  O nome do repositório deve seguir o padrão <TemaProjeto>_<Nome Projeto>.
-  O nome do projeto deve representar o que foi implementado no mesmo (Ex:
-  Game xyz, Implementações Otimizadas de Algoritmos, Aplicativo xpto)
+# NemesisSeek 
 
-Os temas de projeto são:  
- - Busca - Algoritmos de busca  
- - Ord_quad - Algoritmos de ordenação O(n²)  
- - Ord_nlogn - Algoritmos de ordenação O(n*log(n))  
- - Arv - Algoritmos de manipulação de Árvores  
- - Grafo - Algoritmos de manipulação de Grafos  
- 
- Ex: Busca_ConcorrenteDaGoogle
-```
 ## Alunos  
 | Matrícula | Nome |  
 |-----------------------|---------------------|  
 | 23/1033737 | Artur Mendonça Arruda |  
 | 23/1035464 | Lucas Mendonça Arruda |  
 
-## Descrição do projeto
-Aqui você deve dizer o objetivo deste projeto e o que realmente foi feito neste repositório.
-## Guia de instalação
-Aqui devem estar descritas as dependências do projeto (versões de linguagens e ferramentas) e as instruções necessárias para executar o projeto. 
+## Descrição
+
+O NemesisSeek é um jogo em C onde o jogador precisa abrir portas para avançar por diferentes fases, enquanto um monstro se aproxima constantemente. Cada porta possui uma chave que deve ser encontrada utilizando algoritmos de busca ou dicas fornecidas pelo próprio jogo. Algumas portas são especiais e permitem que o jogador passe de fase. O objetivo principal do jogo é completar todas as fases antes que o monstro alcance o jogador.
+O projeto é inspirado em um cenário de labirinto, onde o jogador precisa escapar enquanto é perseguido. Cada porta possui uma combinação específica que deve ser descoberta usando diferentes algoritmos de busca. A escolha correta do algoritmo é crucial para a sobrevivência.
+
+# Guia de instalação
+
 ### Dependências do projeto
-### Como executar o projeto
-## Capturas de tela
-Neste tópico você deve adicionar imagens do funcionamento do projeto.  
- - As imagens devem ser salvas no repositório.
- - Imagens salvas em domínios eternos tendem a ficar indisponíveis e devem ser evitadas.   
-## Conclusões
-Aqui você diz se o algoritmo utilizado foi útil, se tem limitações, etc.
-## Referências
-Caso tenha utilizado algum agoritmo como base, citar o mesmo devidamente para  evitar quaisquer denuncias de plágio.
 
-# Busca_Nemesis
+- **Sistema operacional:** Linux
+- **Compilador:** GCC (versão recomendada: 9.4 ou superior)
+- **Linguagem:** C (padrão C99 ou superior)
+- **Ferramentas opcionais:** Make (para automação da compilação, caso queira criar um Makefile)
 
-## Alunos
-| Matrícula | Nome |
-|-----------------------|---------------------|
-| 23/1033737 | [Artur Mendonça](https://github.com/ArtyMend07) |
-| 23/1035464 | [Lucas Mendonça](https://github.com/EDAII/NemesisSeek/commits?author=lucasarruda9) |
-
-## Descrição do projeto
-O projeto se baseia em um jogo onde o jogador precisa escapar de um labirinto enquanto é perseguido por um monstro. O objetivo principal é navegar através de diferentes portas usando algoritmos de busca para encontrar a saída antes que o monstro alcance o jogador. Cada porta possui uma combinação específica que precisa ser descoberta através de diferentes métodos de busca, tornando a escolha do algoritmo correto crucial para a sobrevivência.
-
-## Guia de instalação
 Para usuários Windows, é necessário:
 - Instalar o GCC (GNU Compiler Collection) ou
 - Utilizar um compilador online como o [OnlineGDB](https://www.onlinegdb.com/)
 
-Para usuários Linux, o GCC já vem instalado por padrão na maioria das distribuições.
+Não são necessárias bibliotecas externas, apenas o compilador C padrão.  
 
-### Como executar o projeto
-1. Compile o arquivo main.c:
+
+## Como executar o projeto
+1. Clone o repositório
 ```bash
-gcc main.c -o nemesis
+git clone https://github.com/EDAII/NemesisSeek.git
 ```
+1. Abra o terminal na pasta do projeto com o comando: `cd NemesisSeek`  
+2. Compile todos os arquivos juntos usando o GCC:
 
-2. Execute o programa:
-- Windows: `.\nemesis`
-- Linux: `./nemesis`
+```bash
+gcc main.c busca_binaria.c busca_sequencial.c hash.c -o programa
+```
+3. Execute o programa:
+   ```
+   ./programa
+   ```
 
 ## Capturas de tela
 
+### Busca Sequencial
+
+![Busca Sequencial](assets/algoritmos/busca_sequencial.png)  
+
+A busca sequencial percorre o vetor elemento por elemento até encontrar o valor desejado.  
+- Cada verificação é contabilizada como um passo.  
+- No contexto do jogo, cada passo aproxima o monstro.
+
+### Busca Binária
+
+![Busca Binária](assets/algoritmos/busca_binaria.png) 
+
+A busca binária só pode ser usada em vetores ordenados.  
+- Ela divide o vetor ao meio a cada comparação, descartando metade dos elementos restantes.  
+- Cada comparação também conta como um passo, impactando a distância do monstro.  
+- Comparada à busca sequencial, geralmente requer muito menos passos para encontrar a chave, mas só funciona em portas ordenadas.
+
+
 ## Conclusões
+
+Os algoritmos de busca implementados foram úteis para ilustrar a diferença de desempenho entre métodos de busca em vetores ordenados e desordenados. No contexto do jogo, eles tornam a experiência mais estratégica, pois o número de interações afeta diretamente o avanço do monstro, incentivando o jogador a escolher o algoritmo mais adequado para cada porta.
+
+### Limitações
+
+- A busca binária só pode ser utilizada em portas ordenadas, limitando sua aplicação em parte do jogo.  
+- A busca sequencial pode ser lenta em vetores grandes, penalizando o jogador se o valor não estiver presente.  
+- O jogo depende de sorte na geração das portas, tornando algumas partidas mais lentas ou rápidas. 
+
+
+## Referências
+Caso tenha utilizado algum agoritmo como base, citar o mesmo devidamente para  evitar quaisquer denuncias de plágio.
 
 ## Histórico de Versões
 
@@ -75,5 +84,3 @@ gcc main.c -o nemesis
 | Versão | Data | Descrição | Autor | Revisor | Revisão |
 |-----------|---------|--------------|----------|------------|------------|
 | `v1.0` | 08/09/2025 | Estruturação inicial da README | [Artur Mendonça](https://github.com/ArtyMend07) | [Lucas Mendonça](https://github.com/lucasarruda9) | 08/09/2025 |
-
-</div>

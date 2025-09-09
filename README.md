@@ -1,4 +1,4 @@
-# NemesisSeek 
+# Busca Nemesis
 
 ## Alunos  
 | Matrícula | Nome |  
@@ -47,7 +47,7 @@ gcc main.c busca_binaria.c busca_sequencial.c hash.c -o programa
 
 ### Busca Sequencial
 
-![Busca Sequencial](assets/algoritmos/busca_sequencial.png)  
+![Busca Sequencial](https://raw.githubusercontent.com/EDAII/Busca_Nemesis/refs/heads/master/assets/algoritmos/busca_sequencial.png)  
 
 A busca sequencial percorre o vetor elemento por elemento até encontrar o valor desejado.  
 - Cada verificação é contabilizada como um passo.  
@@ -55,7 +55,7 @@ A busca sequencial percorre o vetor elemento por elemento até encontrar o valor
 
 ### Busca Binária
 
-![Busca Binária](assets/algoritmos/busca_binaria.png) 
+![Busca Binária](https://raw.githubusercontent.com/EDAII/Busca_Nemesis/refs/heads/master/assets/algoritmos/busca_binaria.png) 
 
 A busca binária só pode ser usada em vetores ordenados.  
 - Ela divide o vetor ao meio a cada comparação, descartando metade dos elementos restantes.  
@@ -64,7 +64,7 @@ A busca binária só pode ser usada em vetores ordenados.
 
 ### Função Hash
 
-![Função Hash](assets/algoritmos/hash.png)
+![Função Hash](https://raw.githubusercontent.com/EDAII/Busca_Nemesis/refs/heads/master/assets/algoritmos/hash.png)
 
 A função hash utilizada combina o algoritmo **djb2**, criado por Daniel J. Bernstein, com uma transformação baseada na **razão áurea (φ)**.  
 
@@ -85,9 +85,12 @@ Os algoritmos de busca implementados foram úteis para ilustrar a diferença de 
 - A busca sequencial pode ser lenta em vetores grandes, penalizando o jogador se o valor não estiver presente.  
 - O jogo depende de sorte na geração das portas, tornando algumas partidas mais lentas ou rápidas. 
 
+### Link do Vídeo de apresentação
 
-## Referências
-Caso tenha utilizado algum agoritmo como base, citar o mesmo devidamente para  evitar quaisquer denuncias de plágio.
+[Link Vídeo](https://youtu.be/-i91VBz_8ek)
+
+[Link Vídeo](https://youtube.com/embed/-i91VBz_8ek)
+
 
 ## Histórico de Versões
 

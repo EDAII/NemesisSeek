@@ -50,34 +50,41 @@ int dar_dica(Porta *p, int tipo) {
         printf("%d ", p->chave);
         for (int i = 0; i < 10; i++) {
             int idx = rand() % p->tamanho;
-            if (p->combinacao[idx] != p->chave) printf("%d ", p->combinacao[idx]);
+            if (p->combinacao[idx] != p->chave) {
+                printf("%d ", p->combinacao[idx]);
+            }
         }
         printf("\n");
-        custo = 100;
+        custo = 150;
     }
     else if(tipo == 2){
         if (p->ordenada) printf("O vetor está ordenado\n");
         else printf("O vetor não está ordenado\n");
-        custo = 30;
+        custo = 300;
     }
     else printf("Escolha uma seleção válida\n");
     return custo;
 }
 
-int abrir_porta(Porta *p, int *distancia_monstro) {
-    
+int abrir_porta(Porta *p, int *distancia_monstro, int numero_porta) {
+    static int hash_cooldown = 0; // contador para controlar uso da hash
+
     while (1) {
-        printf("\nVocê está na porta. Escolha uma ação:\n");
+        if (*distancia_monstro <= 0) {
+            printf("O monstro te alcançou! Game Over.\n");
+            exit(0);
+        }
+        printf("\nVocê está na porta %d. Escolha uma ação:\n", numero_porta);
         printf("1 - Usar busca sequencial\n");
         printf("2 - Usar busca binária\n");
-        printf("3 - Usar hash\n");
+        printf("3 - Usar hash [%d buscas restantes]\n", (5 - hash_cooldown));
         printf("4 - Pedir dica\n");
         printf("5 - Voltar para escolher outra porta\n");
         int escolha;
         scanf("%d", &escolha);
         int passos = 0;
-        
-        if (escolha == 1 || escolha == 2 || escolha == 3) {
+
+        if (escolha == 1 || escolha == 2) {
             int chute;
             printf("Digite o valor que deseja testar: \n");
             scanf("%d", &chute);
@@ -85,7 +92,9 @@ int abrir_porta(Porta *p, int *distancia_monstro) {
             int pos;
             if (escolha == 1) pos = BuscaSequencial(p->combinacao, p->tamanho, chute, &passos);
             else if (escolha == 2) pos = BuscaBinaria(p->combinacao, chute, 0, p->tamanho - 1, &passos);
-            
+
+            hash_cooldown++; //aumenta o contador de buscas para liberar o hash
+
             if (chute == p->chave && pos != -1 && p->especial) {
                 printf("Você encontrou a chave correta!! Você conseguiu mudar de fase!\n");
                 p->ativa = 0;
@@ -95,17 +104,59 @@ int abrir_porta(Porta *p, int *distancia_monstro) {
                 printf("Você encontrou a chave de uma sala comum!\n");
                 p->ativa = 0;   
                 return 0;
-
             }
             else if (pos != -1) {
                 printf("Esse valor existe na porta, mas não é a chave correta.\n");
-                
             }
             else {
                 printf("Esse valor não existe na porta.\n");
             }
 
             printf("Enquanto você tentava achar a senha da porta, o monstro andou %d passos!\n", passos);
+            *distancia_monstro -= passos;
+            printf("Distância atual do monstro: %d passos.\n", *distancia_monstro);
+        }
+        else if (escolha == 3) {
+            if (hash_cooldown < 5) {
+                printf("Você só pode usar a busca hash após realizar 5 buscas sequenciais ou binárias!\n");
+                continue;
+            }
+            hash_cooldown = 0; // reseta o cooldown
+
+            //cria e popula a tabela hash com todos os elementos da porta
+            Node *tabela_hash[TAM_HASH] = {0};
+            for (int i = 0; i < p->tamanho; i++) {
+                Registro r;
+                r.id = i;
+                sprintf(r.nome, "%d", p->combinacao[i]);
+                inserirHash(tabela_hash, r);
+            }
+
+            char chute_str[20];
+            printf("Digite o valor que deseja buscar (hash)");
+            scanf("%s", chute_str);
+
+            passos = 15; //custo fixo para busca hash
+            Registro *r = buscarHash(tabela_hash, chute_str);
+
+            if (r != NULL && atoi(chute_str) == p->chave && p->especial) {
+                printf("Você encontrou a chave correta usando hash!! Você conseguiu mudar de fase!\n");
+                p->ativa = 0;
+                return 1;
+            }
+            else if (r != NULL && atoi(chute_str) == p->chave && !p->especial) {
+                printf("Você encontrou a chave de uma sala comum usando hash!\n");
+                p->ativa = 0;   
+                return 0;
+            }
+            else if (r != NULL) {
+                printf("Esse valor existe na porta, mas não é a chave correta.\n");
+            }
+            else {
+                printf("Esse valor não existe na porta .\n");
+            }
+
+            printf("Enquanto você tentava achar a senha da porta usando hash, o monstro andou %d passos!\n", passos);
             *distancia_monstro -= passos;
             printf("Distância atual do monstro: %d passos.\n", *distancia_monstro);
         }
@@ -117,13 +168,11 @@ int abrir_porta(Porta *p, int *distancia_monstro) {
             printf("Enquanto você ficava pensando em como desbloquear a porta, o monstro já andou %d passos!\n", passos);
             *distancia_monstro -= passos;
             printf("Distância atual do monstro: %d passos.\n", *distancia_monstro);
-
         }
         else if (escolha == 5) {
             *distancia_monstro -= 50;
             printf("Você voltou para o corredor... o monstro se aproximou 50 passos!\n");
             printf("Distância atual do monstro: %d passos.\n", *distancia_monstro);
-
             return 0; // volta para o menu de portas
         }
         else {
@@ -173,15 +222,11 @@ void jogo() {
                 continue;
             }
 
-            portaAberta = abrir_porta(&portas[escolha - 1], &distancia_monstro);
+            portaAberta = abrir_porta(&portas[escolha - 1], &distancia_monstro, escolha);
             if (!portaAberta) distancia_monstro -= 50;
-            else distancia_monstro += 100;
+            else distancia_monstro += 300;
         }
 
-        if (distancia_monstro <= 0) {
-            printf("O monstro te alcançou! Game Over.\n");
-            return;
-        }
     }
 
     printf("\nParabéns! Você completou todas as fases.\n");
